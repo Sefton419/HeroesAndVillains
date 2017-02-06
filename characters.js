@@ -12,16 +12,14 @@ class Person {
     this.health = 100;
     this.abilities = ['Warrior', 'Wizard', 'Rogue', 'Politician', 'Merchant', 'Peasant'];
     this.ability = 'Peasant';
-    this.poisoned = false;
-    this.stunned = false;
-  }
-
-  eat() {
-    this.health = this.health + 10;
-  }
-
-  takeDamage() {
-    this.health =  this.health - 31;
+    this.poisoned = {
+      status: false, 
+      count: 0
+    };
+    this.stunned = {
+      status: false, 
+      count: 0
+    };
   }
 
   drinkElixer() {
@@ -46,7 +44,6 @@ class Person {
     console.log('- - - - - - - - - - - - - - - - - - - - - -');
     console.log(`${this.name}'s updated instance: `, this);
   }
-
 
 }
 
@@ -101,7 +98,12 @@ Austin.initAttacks(Austin.ability);
 
 const battle1 = new Battle(JD, Austin);
 console.log('battle1 comenses: ', battle1);
-battle1.attack(JD, JD.attacks[0].type, Austin);
+for (let i = 1; i < 15; i++) {
+  battle1.attack(JD, JD.attacks[Math.floor(Math.random() * 3)].type, Austin);
+  battle1.attack(Austin, Austin.attacks[Math.floor(Math.random() * 3)].type, JD);
+}
+
+
 
 
 
