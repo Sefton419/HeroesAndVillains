@@ -5,7 +5,7 @@ const attack = () => {
     {
       ability: 'Warrior',
       type: 'Bash',
-      damage: 5,
+      damage: 12,
       poison: false,
       stun: true
     },

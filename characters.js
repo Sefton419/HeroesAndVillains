@@ -98,7 +98,9 @@ Austin.initAttacks(Austin.ability);
 
 const battle1 = new Battle(JD, Austin);
 console.log('battle1 comenses: ', battle1);
-for (let i = 1; i < 15; i++) {
+
+for (let i = 1; i < 10; i++) {
+  console.log(`~~~!!!~~~ Attack Round ${i} ~~~!!!~~~`)
   battle1.attack(JD, JD.attacks[Math.floor(Math.random() * 3)].type, Austin);
   battle1.attack(Austin, Austin.attacks[Math.floor(Math.random() * 3)].type, JD);
 }

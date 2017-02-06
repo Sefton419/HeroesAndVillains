@@ -18,22 +18,23 @@ const battle = () => {
       const attackStun = attackObj.stun;
     
       console.log('attackObj: ', attackObj);
-      console.log('- - - - - - - - - - - - - - - - - - - - - -');
 
       // inflicting DAMAGE!!!
-      victim.health -= attackDamage;
+      const randomMultiplier = (1 + Math.random()/2.85);
+      victim.health -= Math.ceil(attackDamage * randomMultiplier);
 
-      // Applying poision and stun if not poisoned or stunned already, 50% of the time
+      // Applying poision if not poisoned already, 66% of the time
       if (attackPoison === true) {
-        if (Math.random() >= 0.33 && victim.poisoned.status !== true) {  
+        if (Math.random() >= 0.33 && victim.poisoned.status === false) {  
           victim.poisoned.status = true;
         } else {
-        console.log(`${victim.name} AVOIDED POIsON!!!!!!!!@@@@@@`);
+        console.log(`${victim.name} AVOIDED POISON!!!!!!!!@@@@@@`);
         }
       }
        
+      // Applying stun if not stunned already, 66% of the time
       if (attackStun === true) {
-        if (Math.random() >= 0.33 && victim.stunned.status !== true) {  
+        if (Math.random() >= 0.33 && victim.stunned.status === false) {  
           victim.stunned.status = true;
         } else {
         console.log(`${victim.name} AVOIDED STUN!!!!!!!!!@@@@@@@`);
@@ -57,18 +58,18 @@ const battle = () => {
         }
       }
 
+      // Make sure poisoned status reverts to false if stunned count is zeroed out
       if (victim.poisoned.count === 0) {
         victim.poisoned.status = false;
       }
 
+      // Make sure stunned status reverts to false if stunned count is zeroed out
       if (victim.stunned.count === 0) {
         victim.stunned.status = false;
       }
       console.log('- - - - - - - - - - - - - - - - - - - - - -');
       console.log(`${aggressor.name} attacks ${victim.name}. His health is now at ${victim.health}`);
       console.log('- - - - - - - - - - - - - - - - - - - - - -'); 
-      console.log(aggressor);
-      console.log('- - - - - - - - - - - - - - - - - - - - - -');
     }
 
     eat() {
